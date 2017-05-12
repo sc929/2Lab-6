@@ -101,6 +101,15 @@ int main(void)
 
 	cout << endl << "   '/' z/a = x/a + (y/a)i" << endl << "a = ";
 	cin >> a;
+		try
+	{
+		if (a == 0) throw a;
+	}
+	catch (int a)
+	{
+		cout << endl << "ERROR!!! You can't divide by zero" << endl;
+		return 0;
+	}
 	complex_num.div(a);
 	
 	_getch();
