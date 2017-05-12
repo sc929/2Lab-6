@@ -7,37 +7,37 @@ using namespace std;
 class complex
 {
 public:
-	double x;
-	double y;
+	double real;
+	double im;
 
 public:
-	complex() { x = 0.0; y = 0.0; }
+	complex() { real = 0.0; im = 0.0; }
 
-	complex(double x, double y)
+	complex(double real, double im)
 	{
-		this->x = x;
-		this->y = y;
+		this->real = real;
+		this->im = im;
 	}
 
     void print(ostream&)
     {
-        cout << x << " + i*(" << y << ')' << endl;
+        cout << real << " + i*(" << im << ')' << endl;
     }
 
     friend ostream& operator << (ostream&, const complex&);
 
     complex add(complex ptr)
 	{
-        ptr.x = x + ptr.x;
-        ptr.y = y + ptr.y;
+        ptr.real = real + ptr.real;
+        ptr.im = im + ptr.im;
 	cout << "z + c = ";
         return ptr;
 	}
 
     complex sub(complex ptr)
 	{
-        ptr.x = x - ptr.x;
-        ptr.y = y - ptr.y;
+        ptr.real = real - ptr.real;
+        ptr.im = im - ptr.im;
 	cout << "z - c = ";
         return ptr;
 	}
@@ -45,8 +45,8 @@ public:
     complex mult(int c)
 	{
         complex ptr(0, 0);
-        ptr.x = x * c;
-        ptr.y = y * c;
+        ptr.real = real * c;
+        ptr.im = im * c;
 	cout << "z*a = ";
         return ptr;
 	}
@@ -54,8 +54,8 @@ public:
     complex div(int c)
 	{
         complex ptr(0, 0);
-        ptr.x = x / c;out
-        ptr.y = y / c;
+        ptr.real = real / c;
+        ptr.im = im / c;
 	cout << "z/a = ";
         return ptr;
 	}
@@ -69,33 +69,33 @@ ostream & operator<<(ostream & ciout, complex &numb)
 
 int main(void)
 {
-	double x, y;
+	double real, im;
 	int a;
 
 	cout << "   Complex number z = x + i*y" << endl << "x = ";
-	cin >> x;
+	cin >> real;
 	cout << "y = ";
-	cin >> y;
+	cin >> im;
 
 	cout << "z = ";
-	complex complex_num(x, y);
+	complex complex_num(real, im);
     	cout << complex_num;
 
 	cout << endl << "   '+' Complex number c = x + i*y" << endl << "x = ";
-	cin >> x;
+	cin >> real;
 	cout << "y = ";
-	cin >> y;
+	cin >> im;
 	cout << "c = ";
-	complex ptr(x, y);
+	complex ptr(real, y);
 	ptr = complex_num.add(ptr);
     	cout << ptr;
 
 	cout << endl << "   '-' Complex number c = x + i*y" << endl << "x = ";
-	cin >> x;
+	cin >> real;
 	cout << "y = ";
-	cin >> y;
-	ptr.x = x;
-	ptr.y = y;
+	cin >> im;
+	ptr.real = real;
+	ptr.im = im;
 	cout << "c = ";
     	cout << ptr;
 	ptr = complex_num.sub(ptr);
