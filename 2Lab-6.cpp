@@ -19,7 +19,8 @@ public:
 		this->y = y;
 	}
 
-    void print(ostream&) {
+    void print(ostream&)
+    {
         cout << x << " + i*(" << y << ')' << endl;
     }
 
