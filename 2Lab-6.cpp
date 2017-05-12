@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include <iostream>
 #include <conio.h>
+#include <iostream>
 
 using namespace std;
 
@@ -17,52 +17,56 @@ public:
 	{
 		this->x = x;
 		this->y = y;
-		print(x, y);
 	}
 
-	void print(double x, double y)
-	{
-		cout << x;
-		if (y >= 0) cout << " + " << y << "i" << endl;
-		else cout << " - " << y*(-1) << "i" << endl;
-	}
+    void print(ostream&) {
+        cout << x << " + i*(" << y << ')' << endl;
+    }
 
-	void add(complex ptr)
+    friend ostream& operator << (ostream&, const complex&);
+
+    complex add(complex ptr)
 	{
-		double a, b;
-		a = x + ptr.x;
-		b = y + ptr.y;
+        ptr.x = x + ptr.x;
+        ptr.y = y + ptr.y;
 		cout << "z + c = ";
-		print(a, b);
+        return ptr;
 	}
 
-	void sub(complex ptr)
+    complex sub(complex ptr)
 	{
-		double a, b;
-		a = x - ptr.x;
-		b = y - ptr.y;
+        ptr.x = x - ptr.x;
+        ptr.y = y - ptr.y;
 		cout << "z - c = ";
-		print(a, b);
+        return ptr;
 	}
 
-	void mult(int c)
+    complex mult(int c)
 	{
-		double a, b;
-		a = x * c;
-		b = y * c;
+        complex ptr(0, 0);
+        ptr.x = x * c;
+        ptr.y = y * c;
 		cout << "z*a = ";
-		print(a, b);
+        return ptr;
 	}
 
-	void div(int c)
+    complex div(int c)
 	{
-		double a, b;
-		a = x / c;
-		b = y / c;
+        complex ptr(0, 0);
+        ptr.x = x / c;out
+        ptr.y = y / c;
 		cout << "z/a = ";
-		print(a, b);
+        return ptr;
 	}
 };
+
+ostream & operator<<(ostream & ciout, complex &numb)
+{
+    numb.print(ciout);
+    return ciout;
+}
+
+complex res();
 
 int main(void)
 {
@@ -76,6 +80,7 @@ int main(void)
 
 	cout << "z = ";
 	complex complex_num(x, y);
+    	cout << complex_num;
 
 	cout << endl << "   '+' Complex number c = x + yi" << endl << "x = ";
 	cin >> x;
@@ -83,7 +88,8 @@ int main(void)
 	cin >> y;
 	cout << "c = ";
 	complex ptr(x, y);
-	complex_num.add(ptr);
+	ptr = complex_num.add(ptr);
+    	cout << ptr;
 
 	cout << endl << "   '-' Complex number c = x + yi" << endl << "x = ";
 	cin >> x;
@@ -92,12 +98,15 @@ int main(void)
 	ptr.x = x;
 	ptr.y = y;
 	cout << "c = ";
-	ptr.print(x, y);
-	complex_num.sub(ptr);
+    	cout << ptr;
+	//ptr.print(x, y);
+	ptr = complex_num.sub(ptr);
+    	cout << ptr;
 
 	cout << endl << "   '*' z*a = x*a + (y*a)i" << endl << "a = ";
 	cin >> a;
-	complex_num.mult(a);
+	ptr = complex_num.mult(a);
+    	cout << ptr;
 
 	cout << endl << "   '/' z/a = x/a + (y/a)i" << endl << "a = ";
 	cin >> a;
@@ -110,8 +119,8 @@ int main(void)
 		cout << endl << "ERROR!!! You can't divide by zero" << endl;
 		return 0;
 	}
-	complex_num.div(a);
-	
-	_getch();
+	ptr = complex_num.div(a);
+    	cout << ptr;
+
 	return 0;
 }
