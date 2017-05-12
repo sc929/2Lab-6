@@ -30,7 +30,7 @@ public:
 	{
         ptr.x = x + ptr.x;
         ptr.y = y + ptr.y;
-		cout << "z + c = ";
+	cout << "z + c = ";
         return ptr;
 	}
 
@@ -38,7 +38,7 @@ public:
 	{
         ptr.x = x - ptr.x;
         ptr.y = y - ptr.y;
-		cout << "z - c = ";
+	cout << "z - c = ";
         return ptr;
 	}
 
@@ -47,7 +47,7 @@ public:
         complex ptr(0, 0);
         ptr.x = x * c;
         ptr.y = y * c;
-		cout << "z*a = ";
+	cout << "z*a = ";
         return ptr;
 	}
 
@@ -56,7 +56,7 @@ public:
         complex ptr(0, 0);
         ptr.x = x / c;out
         ptr.y = y / c;
-		cout << "z/a = ";
+	cout << "z/a = ";
         return ptr;
 	}
 };
@@ -67,14 +67,12 @@ ostream & operator<<(ostream & ciout, complex &numb)
     return ciout;
 }
 
-complex res();
-
 int main(void)
 {
 	double x, y;
 	int a;
 
-	cout << "   Complex number z = x + yi" << endl << "x = ";
+	cout << "   Complex number z = x + i*y" << endl << "x = ";
 	cin >> x;
 	cout << "y = ";
 	cin >> y;
@@ -83,7 +81,7 @@ int main(void)
 	complex complex_num(x, y);
     	cout << complex_num;
 
-	cout << endl << "   '+' Complex number c = x + yi" << endl << "x = ";
+	cout << endl << "   '+' Complex number c = x + i*y" << endl << "x = ";
 	cin >> x;
 	cout << "y = ";
 	cin >> y;
@@ -92,7 +90,7 @@ int main(void)
 	ptr = complex_num.add(ptr);
     	cout << ptr;
 
-	cout << endl << "   '-' Complex number c = x + yi" << endl << "x = ";
+	cout << endl << "   '-' Complex number c = x + i*y" << endl << "x = ";
 	cin >> x;
 	cout << "y = ";
 	cin >> y;
@@ -100,18 +98,17 @@ int main(void)
 	ptr.y = y;
 	cout << "c = ";
     	cout << ptr;
-	//ptr.print(x, y);
 	ptr = complex_num.sub(ptr);
     	cout << ptr;
 
-	cout << endl << "   '*' z*a = x*a + (y*a)i" << endl << "a = ";
+	cout << endl << "   '*' z*a = x*a + i*(y*a)" << endl << "a = ";
 	cin >> a;
 	ptr = complex_num.mult(a);
     	cout << ptr;
 
-	cout << endl << "   '/' z/a = x/a + (y/a)i" << endl << "a = ";
+	cout << endl << "   '/' z/a = x/a + i*(y/a)" << endl << "a = ";
 	cin >> a;
-		try
+	try
 	{
 		if (a == 0) throw a;
 	}
