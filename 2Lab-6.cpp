@@ -86,7 +86,7 @@ int main(void)
 	cout << "y = ";
 	cin >> im;
 	cout << "c = ";
-	complex ptr(real, y);
+	complex ptr(real, im);
 	ptr = complex_num.add(ptr);
     	cout << ptr;
 
