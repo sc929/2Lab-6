@@ -11,7 +11,7 @@ public:
 	double y;
 
 public:
-	complex() { x = 0; y = 0; }
+	complex() { x = 0.0; y = 0.0; }
 
 	complex(double x, double y)
 	{
