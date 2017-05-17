@@ -10,7 +10,6 @@ public:
 	double real;
 	double im;
 
-public:
 	complex() { real = 0.0; im = 0.0; }
 
 	complex(double real, double im)
@@ -19,106 +18,88 @@ public:
 		this->im = im;
 	}
 
-    void print(ostream&)
-    {
-        cout << real << " + i*(" << im << ')' << endl;
-    }
-
-    friend ostream& operator << (ostream&, const complex&);
-
-    complex add(complex ptr)
+	void print(ostream&)
 	{
-        ptr.real = real + ptr.real;
-        ptr.im = im + ptr.im;
-	cout << "z + c = ";
-        return ptr;
+		cout << real << " + i*(" << im << ')' << endl;
 	}
 
-    complex sub(complex ptr)
+	friend ostream& operator << (ostream&, const complex&);
+
+	complex add(complex res)
 	{
-        ptr.real = real - ptr.real;
-        ptr.im = im - ptr.im;
-	cout << "z - c = ";
-        return ptr;
+		res.real = real + res.real;
+		res.im = im + res.im;
+		return res;
 	}
 
-    complex mult(int c)
+	complex sub(complex res)
 	{
-        complex ptr(0, 0);
-        ptr.real = real * c;
-        ptr.im = im * c;
-	cout << "z*a = ";
-        return ptr;
+		res.real = real - res.real;
+		res.im = im - res.im;
+		return res;
 	}
 
-    complex div(int c)
+	complex mult(int c)
 	{
-        complex ptr(0, 0);
-        ptr.real = real / c;
-        ptr.im = im / c;
-	cout << "z/a = ";
-        return ptr;
+		complex res(0, 0);
+		res.real = real * c;
+		res.im = im * c;
+		return res;
+	}
+
+	complex div(int c)
+	{
+		complex res(0, 0);
+		try
+		{
+			if (c == 0) throw c;
+		}
+		catch (int c)
+		{
+			cout << endl << "ERROR!!! You can't divide by zero" << endl;
+			return res;
+		}
+		res.real = real / c;
+		res.im = im / c;
+		return res;
 	}
 };
 
 ostream & operator<<(ostream & ciout, complex &numb)
 {
-    numb.print(ciout);
-    return ciout;
+	numb.print(ciout);
+	return ciout;
 }
 
 int main(void)
 {
-	double real, im;
-	int a;
-
-	cout << "   Complex number z = x + i*y" << endl << "x = ";
-	cin >> real;
-	cout << "y = ";
-	cin >> im;
+	complex result(0, 0);
 
 	cout << "z = ";
-	complex complex_num(real, im);
-    	cout << complex_num;
+	complex complex_num(13, 7);
+	cout << complex_num;
 
-	cout << endl << "   '+' Complex number c = x + i*y" << endl << "x = ";
-	cin >> real;
-	cout << "y = ";
-	cin >> im;
 	cout << "c = ";
-	complex ptr(real, im);
-	ptr = complex_num.add(ptr);
-    	cout << ptr;
+	complex plus(4, 9);
+	cout << plus;
+	cout << "z + c = ";
+	result = complex_num.add(plus);
+	cout << result;
 
-	cout << endl << "   '-' Complex number c = x + i*y" << endl << "x = ";
-	cin >> real;
-	cout << "y = ";
-	cin >> im;
-	ptr.real = real;
-	ptr.im = im;
-	cout << "c = ";
-    	cout << ptr;
-	ptr = complex_num.sub(ptr);
-    	cout << ptr;
+	cout << "d = ";
+	complex minus(3, 16);
+	cout << minus;
+	cout << "z - d = ";
+	result = complex_num.sub(minus);
+	cout << result;
 
-	cout << endl << "   '*' z*a = x*a + i*(y*a)" << endl << "a = ";
-	cin >> a;
-	ptr = complex_num.mult(a);
-    	cout << ptr;
+	cout << "z*5 = ";
+	result = complex_num.mult(5);
+	cout << result;
 
-	cout << endl << "   '/' z/a = x/a + i*(y/a)" << endl << "a = ";
-	cin >> a;
-	try
-	{
-		if (a == 0) throw a;
-	}
-	catch (int a)
-	{
-		cout << endl << "ERROR!!! You can't divide by zero" << endl;
-		return 0;
-	}
-	ptr = complex_num.div(a);
-    	cout << ptr;
-
+	cout << "z/3 = ";
+	result = complex_num.div(3);
+	cout << result;
+	_getch();
 	return 0;
 }
